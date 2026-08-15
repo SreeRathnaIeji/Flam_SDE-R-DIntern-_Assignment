@@ -26,31 +26,3 @@ def curve(theta, M, X, t):
     )
 
     return x, y
-
-def cost(parameters):
-
-    theta, M, X = parameters
-
-    t = np.linspace(6, 60, len(x_expected))
-
-    x_predicted, y_predicted = curve(theta, M, X, t)
-
-    error = np.sum(
-        np.abs(x_expected - x_predicted)
-        + np.abs(y_expected - y_predicted)
-    )
-
-    return error
-
-result = differential_evolution(
-    cost,
-    bounds,
-    seed=42
-)
-
-theta, M, X = result.x
-
-print("Theta (degrees):", np.rad2deg(theta))
-print("M:", M)
-print("X:", X)
-print("L1 cost:", result.fun)
